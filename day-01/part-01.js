@@ -1,14 +1,13 @@
 
 import readInputFileIntegers from '../shared/lib/read-input-file-integers.js';
 
-const input = await readInputFileIntegers(import.meta);
+const depths = await readInputFileIntegers(import.meta);
 
-const result = input.reduce((state, depth) => {
-	if (state.previousDepth && state.previousDepth < depth) {
-		state.count += 1;
+const result = depths.reduce((count, depth, index, source) => {
+	if (index > 0 && depth > source[index - 1]) {
+		return count + 1;
 	}
-	state.previousDepth = depth;
-	return state;
-}, {count: 0});
+	return count;
+}, 0);
 
-console.log(result.count);
+console.log(result);
