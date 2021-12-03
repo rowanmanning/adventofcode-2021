@@ -2,7 +2,8 @@
 import readInputFileLines from '../shared/lib/read-input-file-lines.js';
 import rotateMatrix from './lib/rotate-matrix.js';
 
-const input = (await readInputFileLines(import.meta)).map(line => line.split('').map(number => parseInt(number, 10)));
+const input = (await readInputFileLines(import.meta))
+	.map(line => line.split('').map(number => parseInt(number, 10)));
 
 function getColumnInfo(rows) {
 	return rotateMatrix(rows).map(row => {
@@ -24,9 +25,8 @@ function findRating(rows, type, defaultRating) {
 		rows = rows.filter(row => {
 			if (columnInfo[index].equal) {
 				return row[index] === defaultRating;
-			} else {
-				return row[index] === columnInfo[index][type];
 			}
+			return row[index] === columnInfo[index][type];
 		});
 		index += 1;
 	}

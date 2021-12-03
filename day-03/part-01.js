@@ -2,7 +2,8 @@
 import readInputFileLines from '../shared/lib/read-input-file-lines.js';
 import rotateMatrix from './lib/rotate-matrix.js';
 
-const input = (await readInputFileLines(import.meta)).map(line => line.split('').map(number => parseInt(number, 10)));
+const input = (await readInputFileLines(import.meta))
+	.map(line => line.split('').map(number => parseInt(number, 10)));
 const inputRotated = rotateMatrix(input);
 
 const gammaBinary = inputRotated.map(row => {

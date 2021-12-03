@@ -2,7 +2,9 @@
 export default class Submarine {
 
 	aim = 0;
+
 	depth = 0;
+
 	distance = 0;
 
 	up() {
