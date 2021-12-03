@@ -1,28 +1,27 @@
 
+import Submarine from './lib/submarine.js';
 import readInputFileCommands from './lib/read-input-file-commands.js';
 
-const commands = await readInputFileCommands(import.meta);
+class SubmarinePart1 extends Submarine {
 
-const startingState = {
-	depth: 0,
-	horizontalPosition: 0
-};
-
-const position = commands.reduce((state, {direction, units}) => {
-	switch (direction) {
-		case 'forward':
-			state.horizontalPosition += units;
-			break;
-		case 'down':
-			state.depth += units;
-			break;
-		case 'up':
-			state.depth -= units;
-			break;
+	up(amount) {
+		this.depth -= amount;
 	}
-	return state;
-}, startingState);
 
-const result = position.horizontalPosition * position.depth;
+	down(amount) {
+		this.depth += amount;
+	}
 
-console.log(result);
+	forward(amount) {
+		this.distance += amount;
+	}
+
+}
+
+const submarine = new SubmarinePart1();
+
+for (const {direction, units} of await readInputFileCommands(import.meta)) {
+	submarine[direction](units);
+}
+
+console.log(submarine.depth * submarine.distance);
